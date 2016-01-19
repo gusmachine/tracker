@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 走行記録</title>
-    <link>http://log.gusmachine.com/post/</link>
+    <link>http://track.gusmachine.com/post/</link>
     <description>Recent content in Posts on 走行記録</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 24 Dec 2015 21:43:08 +0900</lastBuildDate>
-    <atom:link href="http://log.gusmachine.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://track.gusmachine.com/post/index.xml" rel="self" type="application/rss+xml" />
     
       
         
           <item>
             <title>first</title>
-            <link>http://log.gusmachine.com/post/first/</link>
+            <link>http://track.gusmachine.com/post/first/</link>
             <pubDate>Thu, 24 Dec 2015 21:43:08 +0900</pubDate>
             
-            <guid>http://log.gusmachine.com/post/first/</guid>
+            <guid>http://track.gusmachine.com/post/first/</guid>
             <description>
 
 &lt;h2 id=&#34;first-headline:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;First headline.&lt;/h2&gt;
