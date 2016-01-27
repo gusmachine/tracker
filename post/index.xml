@@ -5,24 +5,208 @@
     <link>http://track.gusmachine.com/post/</link>
     <description>Recent content in Posts on 走行記録</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 24 Dec 2015 21:43:08 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 28 Jan 2016 00:02:13 +0900</lastBuildDate>
     <atom:link href="http://track.gusmachine.com/post/index.xml" rel="self" type="application/rss+xml" />
     
       
         
           <item>
-            <title>first</title>
-            <link>http://track.gusmachine.com/post/2015/12/24/first/</link>
-            <pubDate>Thu, 24 Dec 2015 21:43:08 +0900</pubDate>
+            <title>携帯版テーマの謎仕様</title>
+            <link>http://track.gusmachine.com/post/2016/01/28/template-styles/</link>
+            <pubDate>Thu, 28 Jan 2016 00:02:13 +0900</pubDate>
             
-            <guid>http://track.gusmachine.com/post/2015/12/24/first/</guid>
+            <guid>http://track.gusmachine.com/post/2016/01/28/template-styles/</guid>
+            <description>&lt;p&gt;ブログのテーマの携帯版が気に入りません。今時はほとんどすべてのテーマが携帯に対応してますが、それがあまりうまくないのです。&lt;/p&gt;
+
+&lt;p&gt;気に入らないのは、携帯版の上画面半分を覆うタイトル画像です。多くのテーマが、かなり広い範囲をタイトルにとっています。例えば以下のとおり。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/allegiant/&#34;&gt;hugoのallegiantというテーマ&lt;/a&gt;はこの通り。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/theme/allegiant/post/goisforlovers/&#34;&gt;&lt;img src=&#34;http://track.gusmachine.com/img/content/2016/hugo-allegiant.png&#34; alt=&#34;テーマallegiant&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/base16/&#34;&gt;base16というテーマ&lt;/a&gt;はこの通り。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/theme/base16/post/goisforlovers/&#34;&gt;&lt;img src=&#34;http://track.gusmachine.com/img/content/2016/hugo-base16.png&#34; alt=&#34;テーマbase16&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;どちらも、タイトルが画面の半分以上を占拠しています。特に上のケースはタイトル内の隙間が多いことから、意識的に広範囲を埋めていることがわかります。なんででしょう。すし詰めにしろとは言わないものの、携帯の画面は小さいので、もっと節約して使って欲しいところです。&lt;/p&gt;
+
+&lt;p&gt;他のページ作成機であるWordPressやOctopressも似たようなものでした。何かの流行なんでしょうか。&lt;/p&gt;
+
+&lt;p&gt;ここまで使われているとすると何か理由がありそうです。ありそうなのは以下の２つ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;横にメニューや装飾を置けない以上、ここでデザインや、あるいは誰のサイトであるかアピールするしかない。&lt;/li&gt;
+&lt;li&gt;アクセス解析でスクロールを検出している。スクロールしない人は記事を見ていないだろうと。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;見たところそういうアクセス解析はついていないので、上の理由でしょうか。スクロールすれば見えるので良い、と。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>お絵かきロジックソルバをZ3で書いた</title>
+            <link>http://track.gusmachine.com/post/2016/01/19/draw-logic-z3/</link>
+            <pubDate>Tue, 19 Jan 2016 00:02:03 +0900</pubDate>
+            
+            <guid>http://track.gusmachine.com/post/2016/01/19/draw-logic-z3/</guid>
+            <description>&lt;p&gt;SMT Solverである&lt;a href=&#34;https://github.com/Z3Prover/z3/wiki&#34;&gt;Z3&lt;/a&gt;でお絵かきロジックソルバを書きました。練習です。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/gusmachine/gusmachine_junk/blob/master/draw_logic_solver.py&#34;&gt;コードはこちら。&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;罠が何箇所かありました。まず、&lt;a href=&#34;http://z3prover.github.io/api/html/z3.html&#34;&gt;Z3 python binding&lt;/a&gt;で多次元配列を作る方法がわからなかったので、１次元配列の添字を適当にスキップさせて二次元の図形用変数を作りました。これは自明。&lt;/p&gt;
+
+&lt;p&gt;解答を作ったあと、それを表示しようとしてハマりました。結果の配列をprintするとTrueやFalseが正しく出てくるのですが、それをアスキーアートに変えようとすると全てTrueになってしまいます。原因は以下のとおり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;&amp;gt;&amp;gt;&amp;gt; import z3
+&amp;gt;&amp;gt;&amp;gt; q = z3.Bool(&#39;q&#39;)
+&amp;gt;&amp;gt;&amp;gt; s = z3.Solver()
+&amp;gt;&amp;gt;&amp;gt; s.add(z3.Not(q))
+&amp;gt;&amp;gt;&amp;gt; s.check()
+sat
+&amp;gt;&amp;gt;&amp;gt; m = s.model()
+&amp;gt;&amp;gt;&amp;gt; m
+[q = False]
+&amp;gt;&amp;gt;&amp;gt; m.eval(q)
+False
+&amp;gt;&amp;gt;&amp;gt; not m.eval(q)
+False
+&amp;gt;&amp;gt;&amp;gt; help(m.eval(q))
+Help on instance of BoolRef in module z3:
+
+class BoolRef(ExprRef)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;つまりm.eval(q)の返り値は&lt;a href=&#34;http://z3prover.github.io/api/html/z3.html#BoolRef&#34;&gt;BoolRef&lt;/a&gt;であってBoolではなく、FalseなBoolRefはpythonの真偽値としてはTrueを持つのでした。&lt;/p&gt;
+
+&lt;p&gt;ちなみに効率ですが、10x10の人手で解けるパズルを解くのに8秒とかかかります。ちょっとつらい。2^100の探索よりは圧倒的に速いですが、そもそも人手で解くことが可能なパズルならばもっと高速で解けて欲しいところです。不適切なツールだったということでFA。&lt;/p&gt;
+
+&lt;p&gt;それからz3で一般に困りそうなところ。そういえば数年前のICFPCでも困りました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;シングルプロセス&lt;/li&gt;
+&lt;li&gt;遅い時に高速化をどうすればいいかわからない。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Hugoでblogを作ってみる。</title>
+            <link>http://track.gusmachine.com/post/2016/01/02/start-blog/</link>
+            <pubDate>Sat, 02 Jan 2016 00:01:48 +0900</pubDate>
+            
+            <guid>http://track.gusmachine.com/post/2016/01/02/start-blog/</guid>
             <description>
 
-&lt;h2 id=&#34;first-headline:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;First headline.&lt;/h2&gt;
+&lt;p&gt;新しいことを始めようと何か書いてみます。&lt;a href=&#34;http://gusmachine.blog49.fc2.com/&#34;&gt;ブログはありますがfc2&lt;/a&gt;で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。&lt;/p&gt;
 
-&lt;p&gt;Some lines.&lt;/p&gt;
+&lt;p&gt;はやりを探して&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;を採用。公式ドキュメントとコミュニティが充実しているので情報を探すのが楽です。&lt;a href=&#34;http://qiita.com/tags/Hugo&#34;&gt;Qiita/tags/Hugo&lt;/a&gt;とかに日本語の記事もあります。&lt;/p&gt;
 
-&lt;p&gt;Another Paragraph.&lt;/p&gt;
+&lt;h2 id=&#34;やったこと:1f2178eacd071b8337f975ca1264b15b&#34;&gt;やったこと&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;インストール&lt;/li&gt;
+&lt;li&gt;hugo serverでブラウザで読めるようになるまでチュートリアルをこなす。&lt;/li&gt;
+&lt;li&gt;適当な文章(これ)を書く。&lt;/li&gt;
+&lt;li&gt;テーマをいろいろ変えてみる。
+
+&lt;ul&gt;
+&lt;li&gt;G+リンクを付けてみる。&lt;/li&gt;
+&lt;li&gt;fontawesomeを更新してG+のアイコンを正しくする。&lt;/li&gt;
+&lt;li&gt;一部のテキストを適当に更新。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;bitbucketチェックイン。&lt;/li&gt;
+&lt;li&gt;github pagesに突っ込む。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;インストール:1f2178eacd071b8337f975ca1264b15b&#34;&gt;インストール&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install hugo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Macだったのでこれで終了。LinuxならGolangと &lt;code&gt;go get&lt;/code&gt; で終わりだと思います。&lt;/p&gt;
+
+&lt;h2 id=&#34;チュートリアル:1f2178eacd071b8337f975ca1264b15b&#34;&gt;チュートリアル&lt;/h2&gt;
+
+&lt;p&gt;とりあえず公式のドキュメントを読めばよいです。&lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;quickstart&lt;/a&gt;を追いかけました。あとは適当に読めばよいです。&lt;a href=&#34;https://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt;を読んでさくっとアップロードしてしまっても良いですが、私はそれを少し日和りました。&lt;/p&gt;
+
+&lt;p&gt;Install some themesの作業だけ地味に時間がかかります。テーマを全部落としてくるので。&lt;/p&gt;
+
+&lt;h2 id=&#34;テーマ:1f2178eacd071b8337f975ca1264b15b&#34;&gt;テーマ&lt;/h2&gt;
+
+&lt;p&gt;テーマを選んでサイトのデザインを変えられますが、これがなかなか苦労しました。迷います。あと不適切なやつもアリマス。&lt;/p&gt;
+
+&lt;p&gt;テーマは&lt;a href=&#34;http://themes.gohugo.io/&#34;&gt;Hugo Theme Showcase&lt;/a&gt;から探します。チュートリアルに従うとテーマが一通りインストールされているので、 &lt;code&gt;--themes&lt;/code&gt; の引数を変えて実際に試すこともできます。&lt;/p&gt;
+
+&lt;p&gt;実際に触るとテーマがいろいろとバグってたりして楽しいです。自分で文章をいくつか書いて試すことをおすすめします。私が見つけたのは以下の様な例です。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;プログラム片のスタイルが崩れる。&lt;/li&gt;
+&lt;li&gt;config.yamlに指定する変数名がtypoしているので、説明通りに設定しても動かない。&lt;/li&gt;
+&lt;li&gt;トップページの概要が崩れる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;github-pages-に突っ込む:1f2178eacd071b8337f975ca1264b15b&#34;&gt;github pages に突っ込む。&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt;に概要があります。しかし、あんまりよい手順に見えなかったので理解したうえで別の手順で行いました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;上までの手順を行いサイト例を手元に作る。public以下は作らなくて良い。&lt;/li&gt;
+&lt;li&gt;bitbuket.orgかどこかにgit pushする。&lt;/li&gt;
+&lt;li&gt;github.comに公開用レポジトリをつくる。ここには公開されるデータのみが入ることになる。&lt;/li&gt;
+&lt;li&gt;ウェブインターフェスを用いて適当なREADME.mdを置く。&lt;/li&gt;
+&lt;li&gt;ウェブインターフェスを用いてgh-pagesブランチを作る。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あとは以下のコマンドを実行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git remote add gh-gh-pages git@github.com:gusmachine/tracker.git
+$ git subtree add --prefix=public gh-gh-pages gh-pages --squash
+git fetch gh-gh-pages gh-pages
+warning: no common commits
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&amp;gt; FETCH_HEAD
+ * [new branch]      gh-pages   -&amp;gt; gh-gh-pages/gh-pages
+Added dir &#39;public&#39;
+$ ls public 
+README.md
+$ git subtree pull --prefix=public gh-gh-pages gh-pages --squash
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&amp;gt; FETCH_HEAD
+Subtree is already at commit b9beee57b9945c67e1f3848d9c06d74d3e806f6d.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで、レポジトリは次のようになります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;bitbucket.orgにはhugoの元データが入る。&lt;/li&gt;
+&lt;li&gt;public以下はgithub.comの公開用レポジトリをsubtreeとして持つことになる。&lt;code&gt;git subtree push&lt;/code&gt;で更新できる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あと上のチュートリアルで疑問に思ったこと。&lt;code&gt;canonifyurls: true&lt;/code&gt; は独自ドメインの直下に置くことにするならおそらく不要です。username.github.io/project/ 以下に置くなら必要そうですが。&lt;/p&gt;
+
+&lt;h2 id=&#34;残った項目:1f2178eacd071b8337f975ca1264b15b&#34;&gt;残った項目&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;もう少し文章を足して見られるようにする。&lt;/li&gt;
+&lt;li&gt;画像を足す方法をまじめに見る。
+&lt;a href=&#34;https://discuss.gohugo.io/t/image-path/1721&#34;&gt;hugo/Image path&lt;/a&gt; 画像はどこに置くのか、contentとstatic/imgとで争いが起きてます。とりあえずstatic/imgに設置。Google Photosに置くアイデアは、直リンクの生成が面倒で挫折。&lt;/li&gt;
+&lt;li&gt;タグの使い方を理解。&lt;/li&gt;
+&lt;li&gt;faviconを足す。&lt;/li&gt;
+&lt;li&gt;旧ブログから誘導。&lt;/li&gt;
+&lt;li&gt;月別アーカイブやカレンダーを足す。&lt;/li&gt;
+&lt;li&gt;Markdownだとサムネイルとクリックして大きい画像みたいな作業が面倒なので何か考える。&lt;/li&gt;
+&lt;/ul&gt;
 </description>
           </item>
         
