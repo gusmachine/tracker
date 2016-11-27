@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>走行記録</title>
-    <link>http://track.gusmachine.com/</link>
+    <link>https://track.gusmachine.com/</link>
     <description>Recent content on 走行記録</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 28 Jan 2016 00:02:13 +0900</lastBuildDate>
-    <atom:link href="http://track.gusmachine.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://track.gusmachine.com/index.xml" rel="self" type="application/rss+xml" />
     
       
         
           <item>
             <title>携帯版テーマの謎仕様</title>
-            <link>http://track.gusmachine.com/post/2016/01/28/template-styles/</link>
+            <link>https://track.gusmachine.com/post/2016/01/28/template-styles/</link>
             <pubDate>Thu, 28 Jan 2016 00:02:13 +0900</pubDate>
             
-            <guid>http://track.gusmachine.com/post/2016/01/28/template-styles/</guid>
+            <guid>https://track.gusmachine.com/post/2016/01/28/template-styles/</guid>
             <description>&lt;p&gt;ブログのテーマの携帯版が気に入りません。今時はほとんどすべてのテーマが携帯に対応してますが、それがあまりうまくないのです。&lt;/p&gt;
 
 &lt;p&gt;気に入らないのは、携帯版の上画面半分を覆うタイトル画像です。多くのテーマが、かなり広い範囲をタイトルにとっています。例えば以下のとおり。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/allegiant/&#34;&gt;hugoのallegiantというテーマ&lt;/a&gt;はこの通り。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/theme/allegiant/post/goisforlovers/&#34;&gt;&lt;img src=&#34;http://track.gusmachine.com/img/content/2016/hugo-allegiant.png&#34; alt=&#34;テーマallegiant&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/theme/allegiant/post/goisforlovers/&#34;&gt;&lt;img src=&#34;https://track.gusmachine.com/img/content/2016/hugo-allegiant.png&#34; alt=&#34;テーマallegiant&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/base16/&#34;&gt;base16というテーマ&lt;/a&gt;はこの通り。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/theme/base16/post/goisforlovers/&#34;&gt;&lt;img src=&#34;http://track.gusmachine.com/img/content/2016/hugo-base16.png&#34; alt=&#34;テーマbase16&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://themes.gohugo.io/theme/base16/post/goisforlovers/&#34;&gt;&lt;img src=&#34;https://track.gusmachine.com/img/content/2016/hugo-base16.png&#34; alt=&#34;テーマbase16&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;どちらも、タイトルが画面の半分以上を占拠しています。特に上のケースはタイトル内の隙間が多いことから、意識的に広範囲を埋めていることがわかります。なんででしょう。すし詰めにしろとは言わないものの、携帯の画面は小さいので、もっと節約して使って欲しいところです。&lt;/p&gt;
 
@@ -49,10 +49,10 @@
         
           <item>
             <title>お絵かきロジックソルバをZ3で書いた</title>
-            <link>http://track.gusmachine.com/post/2016/01/19/draw-logic-z3/</link>
+            <link>https://track.gusmachine.com/post/2016/01/19/draw-logic-z3/</link>
             <pubDate>Tue, 19 Jan 2016 00:02:03 +0900</pubDate>
             
-            <guid>http://track.gusmachine.com/post/2016/01/19/draw-logic-z3/</guid>
+            <guid>https://track.gusmachine.com/post/2016/01/19/draw-logic-z3/</guid>
             <description>&lt;p&gt;SMT Solverである&lt;a href=&#34;https://github.com/Z3Prover/z3/wiki&#34;&gt;Z3&lt;/a&gt;でお絵かきロジックソルバを書きました。練習です。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/gusmachine/gusmachine_junk/blob/master/draw_logic_solver.py&#34;&gt;コードはこちら。&lt;/a&gt;&lt;/p&gt;
@@ -99,17 +99,17 @@ class BoolRef(ExprRef)
         
           <item>
             <title>Hugoでblogを作ってみる。</title>
-            <link>http://track.gusmachine.com/post/2016/01/02/start-blog/</link>
+            <link>https://track.gusmachine.com/post/2016/01/02/start-blog/</link>
             <pubDate>Sat, 02 Jan 2016 00:01:48 +0900</pubDate>
             
-            <guid>http://track.gusmachine.com/post/2016/01/02/start-blog/</guid>
+            <guid>https://track.gusmachine.com/post/2016/01/02/start-blog/</guid>
             <description>
 
 &lt;p&gt;新しいことを始めようと何か書いてみます。&lt;a href=&#34;http://gusmachine.blog49.fc2.com/&#34;&gt;ブログはありますがfc2&lt;/a&gt;で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。&lt;/p&gt;
 
 &lt;p&gt;はやりを探して&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;を採用。公式ドキュメントとコミュニティが充実しているので情報を探すのが楽です。&lt;a href=&#34;http://qiita.com/tags/Hugo&#34;&gt;Qiita/tags/Hugo&lt;/a&gt;とかに日本語の記事もあります。&lt;/p&gt;
 
-&lt;h2 id=&#34;やったこと:1f2178eacd071b8337f975ca1264b15b&#34;&gt;やったこと&lt;/h2&gt;
+&lt;h2 id=&#34;やったこと&#34;&gt;やったこと&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;インストール&lt;/li&gt;
@@ -126,20 +126,20 @@ class BoolRef(ExprRef)
 &lt;li&gt;github pagesに突っ込む。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;インストール:1f2178eacd071b8337f975ca1264b15b&#34;&gt;インストール&lt;/h2&gt;
+&lt;h2 id=&#34;インストール&#34;&gt;インストール&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;$ brew install hugo
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Macだったのでこれで終了。LinuxならGolangと &lt;code&gt;go get&lt;/code&gt; で終わりだと思います。&lt;/p&gt;
 
-&lt;h2 id=&#34;チュートリアル:1f2178eacd071b8337f975ca1264b15b&#34;&gt;チュートリアル&lt;/h2&gt;
+&lt;h2 id=&#34;チュートリアル&#34;&gt;チュートリアル&lt;/h2&gt;
 
 &lt;p&gt;とりあえず公式のドキュメントを読めばよいです。&lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;quickstart&lt;/a&gt;を追いかけました。あとは適当に読めばよいです。&lt;a href=&#34;https://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt;を読んでさくっとアップロードしてしまっても良いですが、私はそれを少し日和りました。&lt;/p&gt;
 
 &lt;p&gt;Install some themesの作業だけ地味に時間がかかります。テーマを全部落としてくるので。&lt;/p&gt;
 
-&lt;h2 id=&#34;テーマ:1f2178eacd071b8337f975ca1264b15b&#34;&gt;テーマ&lt;/h2&gt;
+&lt;h2 id=&#34;テーマ&#34;&gt;テーマ&lt;/h2&gt;
 
 &lt;p&gt;テーマを選んでサイトのデザインを変えられますが、これがなかなか苦労しました。迷います。あと不適切なやつもアリマス。&lt;/p&gt;
 
@@ -153,7 +153,7 @@ class BoolRef(ExprRef)
 &lt;li&gt;トップページの概要が崩れる。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;github-pages-に突っ込む:1f2178eacd071b8337f975ca1264b15b&#34;&gt;github pages に突っ込む。&lt;/h2&gt;
+&lt;h2 id=&#34;github-pages-に突っ込む&#34;&gt;github pages に突っ込む。&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt;に概要があります。しかし、あんまりよい手順に見えなかったので理解したうえで別の手順で行いました。&lt;/p&gt;
 
@@ -195,7 +195,7 @@ Subtree is already at commit b9beee57b9945c67e1f3848d9c06d74d3e806f6d.
 
 &lt;p&gt;あと上のチュートリアルで疑問に思ったこと。&lt;code&gt;canonifyurls: true&lt;/code&gt; は独自ドメインの直下に置くことにするならおそらく不要です。username.github.io/project/ 以下に置くなら必要そうですが。&lt;/p&gt;
 
-&lt;h2 id=&#34;残った項目:1f2178eacd071b8337f975ca1264b15b&#34;&gt;残った項目&lt;/h2&gt;
+&lt;h2 id=&#34;残った項目&#34;&gt;残った項目&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;もう少し文章を足して見られるようにする。&lt;/li&gt;

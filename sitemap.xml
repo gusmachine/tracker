@@ -2,23 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://track.gusmachine.com/</loc>
-    <lastmod>2016-01-28T00:02:13+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://track.gusmachine.com/post/2016/01/28/template-styles/</loc>
+    <loc>https://track.gusmachine.com/</loc>
     <lastmod>2016-01-28T00:02:13+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://track.gusmachine.com/post/2016/01/19/draw-logic-z3/</loc>
+    <loc>https://track.gusmachine.com/post/2016/01/28/template-styles/</loc>
+    <lastmod>2016-01-28T00:02:13+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://track.gusmachine.com/post/2016/01/19/draw-logic-z3/</loc>
     <lastmod>2016-01-19T00:02:03+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://track.gusmachine.com/post/2016/01/02/start-blog/</loc>
+    <loc>https://track.gusmachine.com/post/2016/01/02/start-blog/</loc>
     <lastmod>2016-01-02T00:01:48+09:00</lastmod>
   </url>
   
