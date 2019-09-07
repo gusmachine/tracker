@@ -1,0 +1,205 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on 走行記録</title>
+		<link>https://track.gusmachine.com/posts/</link>
+		<description>Recent content in Posts on 走行記録</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>ja-jp</language>
+		<copyright>2015 ~ gusmachine</copyright>
+		<lastBuildDate>Thu, 28 Jan 2016 00:02:13 +0900</lastBuildDate>
+		<atom:link href="https://track.gusmachine.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>携帯版テーマの謎仕様</title>
+			<link>https://track.gusmachine.com/posts/2016/01/28/template-styles/</link>
+			<pubDate>Thu, 28 Jan 2016 00:02:13 +0900</pubDate>
+			
+			<guid>https://track.gusmachine.com/posts/2016/01/28/template-styles/</guid>
+			<description>ブログのテーマの携帯版が気に入りません。今時はほとんどすべてのテーマが携帯に対応してますが、それがあまりうまくないのです。 気に入らないのは、</description>
+			<content type="html"><![CDATA[<p>ブログのテーマの携帯版が気に入りません。今時はほとんどすべてのテーマが携帯に対応してますが、それがあまりうまくないのです。</p>
+
+<p>気に入らないのは、携帯版の上画面半分を覆うタイトル画像です。多くのテーマが、かなり広い範囲をタイトルにとっています。例えば以下のとおり。</p>
+
+<p><a href="http://themes.gohugo.io/allegiant/">hugoのallegiantというテーマ</a>はこの通り。</p>
+
+<p><a href="http://themes.gohugo.io/theme/allegiant/post/goisforlovers/"><img src="/img/content/2016/hugo-allegiant.png" alt="テーマallegiant" /></a></p>
+
+<p><a href="http://themes.gohugo.io/base16/">base16というテーマ</a>はこの通り。</p>
+
+<p><a href="http://themes.gohugo.io/theme/base16/post/goisforlovers/"><img src="/img/content/2016/hugo-base16.png" alt="テーマbase16" /></a></p>
+
+<p>どちらも、タイトルが画面の半分以上を占拠しています。特に上のケースはタイトル内の隙間が多いことから、意識的に広範囲を埋めていることがわかります。なんででしょう。すし詰めにしろとは言わないものの、携帯の画面は小さいので、もっと節約して使って欲しいところです。</p>
+
+<p>他のページ作成機であるWordPressやOctopressも似たようなものでした。何かの流行なんでしょうか。</p>
+
+<p>ここまで使われているとすると何か理由がありそうです。ありそうなのは以下の２つ。</p>
+
+<ul>
+<li>横にメニューや装飾を置けない以上、ここでデザインや、あるいは誰のサイトであるかアピールするしかない。</li>
+<li>アクセス解析でスクロールを検出している。スクロールしない人は記事を見ていないだろうと。</li>
+</ul>
+
+<p>見たところそういうアクセス解析はついていないので、上の理由でしょうか。スクロールすれば見えるので良い、と。</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>お絵かきロジックソルバをZ3で書いた</title>
+			<link>https://track.gusmachine.com/posts/2016/01/19/draw-logic-z3/</link>
+			<pubDate>Tue, 19 Jan 2016 00:02:03 +0900</pubDate>
+			
+			<guid>https://track.gusmachine.com/posts/2016/01/19/draw-logic-z3/</guid>
+			<description>SMT SolverであるZ3でお絵かきロジックソルバを書きました。練習です。 コードはこちら。 罠が何箇所かありました。まず、Z3 python bindingで</description>
+			<content type="html"><![CDATA[<p>SMT Solverである<a href="https://github.com/Z3Prover/z3/wiki">Z3</a>でお絵かきロジックソルバを書きました。練習です。</p>
+
+<p><a href="https://github.com/gusmachine/gusmachine_junk/blob/master/draw_logic_solver.py">コードはこちら。</a></p>
+
+<p>罠が何箇所かありました。まず、<a href="http://z3prover.github.io/api/html/z3.html">Z3 python binding</a>で多次元配列を作る方法がわからなかったので、１次元配列の添字を適当にスキップさせて二次元の図形用変数を作りました。これは自明。</p>
+
+<p>解答を作ったあと、それを表示しようとしてハマりました。結果の配列をprintするとTrueやFalseが正しく出てくるのですが、それをアスキーアートに変えようとすると全てTrueになってしまいます。原因は以下のとおり。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">z3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="n">z3</span><span class="o">.</span><span class="n">Bool</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">z3</span><span class="o">.</span><span class="n">Solver</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">z3</span><span class="o">.</span><span class="n">Not</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="n">sat</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span>
+<span class="p">[</span><span class="n">q</span> <span class="o">=</span> <span class="bp">False</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="ow">not</span> <span class="n">m</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">help</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+<span class="n">Help</span> <span class="n">on</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">BoolRef</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">z3</span><span class="p">:</span>
+
+<span class="k">class</span> <span class="nc">BoolRef</span><span class="p">(</span><span class="n">ExprRef</span><span class="p">)</span></code></pre></div>
+<p>つまりm.eval(q)の返り値は<a href="http://z3prover.github.io/api/html/z3.html#BoolRef">BoolRef</a>であってBoolではなく、FalseなBoolRefはpythonの真偽値としてはTrueを持つのでした。</p>
+
+<p>ちなみに効率ですが、10x10の人手で解けるパズルを解くのに8秒とかかかります。ちょっとつらい。2^100の探索よりは圧倒的に速いですが、そもそも人手で解くことが可能なパズルならばもっと高速で解けて欲しいところです。不適切なツールだったということでFA。</p>
+
+<p>それからz3で一般に困りそうなところ。そういえば数年前のICFPCでも困りました。</p>
+
+<ul>
+<li>シングルプロセス</li>
+<li>遅い時に高速化をどうすればいいかわからない。</li>
+</ul>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Hugoでblogを作ってみる。</title>
+			<link>https://track.gusmachine.com/posts/2016/01/02/start-blog/</link>
+			<pubDate>Sat, 02 Jan 2016 00:01:48 +0900</pubDate>
+			
+			<guid>https://track.gusmachine.com/posts/2016/01/02/start-blog/</guid>
+			<description>新しいことを始めようと何か書いてみます。ブログはありますがfc2で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。 はや</description>
+			<content type="html"><![CDATA[
+
+<p>新しいことを始めようと何か書いてみます。<a href="http://gusmachine.blog49.fc2.com/">ブログはありますがfc2</a>で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。</p>
+
+<p>はやりを探して<a href="https://gohugo.io/">Hugo</a>を採用。公式ドキュメントとコミュニティが充実しているので情報を探すのが楽です。<a href="http://qiita.com/tags/Hugo">Qiita/tags/Hugo</a>とかに日本語の記事もあります。</p>
+
+<h2 id="やったこと">やったこと</h2>
+
+<ul>
+<li>インストール</li>
+<li>hugo serverでブラウザで読めるようになるまでチュートリアルをこなす。</li>
+<li>適当な文章(これ)を書く。</li>
+<li>テーマをいろいろ変えてみる。
+
+<ul>
+<li>G+リンクを付けてみる。</li>
+<li>fontawesomeを更新してG+のアイコンを正しくする。</li>
+<li>一部のテキストを適当に更新。</li>
+</ul></li>
+<li>bitbucketチェックイン。</li>
+<li>github pagesに突っ込む。</li>
+</ul>
+
+<h2 id="インストール">インストール</h2>
+
+<pre><code>$ brew install hugo
+</code></pre>
+
+<p>Macだったのでこれで終了。LinuxならGolangと <code>go get</code> で終わりだと思います。</p>
+
+<h2 id="チュートリアル">チュートリアル</h2>
+
+<p>とりあえず公式のドキュメントを読めばよいです。<a href="https://gohugo.io/overview/quickstart/">quickstart</a>を追いかけました。あとは適当に読めばよいです。<a href="https://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a>を読んでさくっとアップロードしてしまっても良いですが、私はそれを少し日和りました。</p>
+
+<p>Install some themesの作業だけ地味に時間がかかります。テーマを全部落としてくるので。</p>
+
+<h2 id="テーマ">テーマ</h2>
+
+<p>テーマを選んでサイトのデザインを変えられますが、これがなかなか苦労しました。迷います。あと不適切なやつもアリマス。</p>
+
+<p>テーマは<a href="http://themes.gohugo.io/">Hugo Theme Showcase</a>から探します。チュートリアルに従うとテーマが一通りインストールされているので、 <code>--themes</code> の引数を変えて実際に試すこともできます。</p>
+
+<p>実際に触るとテーマがいろいろとバグってたりして楽しいです。自分で文章をいくつか書いて試すことをおすすめします。私が見つけたのは以下の様な例です。</p>
+
+<ul>
+<li>プログラム片のスタイルが崩れる。</li>
+<li>config.yamlに指定する変数名がtypoしているので、説明通りに設定しても動かない。</li>
+<li>トップページの概要が崩れる。</li>
+</ul>
+
+<h2 id="github-pages-に突っ込む">github pages に突っ込む。</h2>
+
+<p><a href="https://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a>に概要があります。しかし、あんまりよい手順に見えなかったので理解したうえで別の手順で行いました。</p>
+
+<ul>
+<li>上までの手順を行いサイト例を手元に作る。public以下は作らなくて良い。</li>
+<li>bitbuket.orgかどこかにgit pushする。</li>
+<li>github.comに公開用レポジトリをつくる。ここには公開されるデータのみが入ることになる。</li>
+<li>ウェブインターフェスを用いて適当なREADME.mdを置く。</li>
+<li>ウェブインターフェスを用いてgh-pagesブランチを作る。</li>
+</ul>
+
+<p>あとは以下のコマンドを実行。</p>
+
+<pre><code>$ git remote add gh-gh-pages git@github.com:gusmachine/tracker.git
+$ git subtree add --prefix=public gh-gh-pages gh-pages --squash
+git fetch gh-gh-pages gh-pages
+warning: no common commits
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&gt; FETCH_HEAD
+ * [new branch]      gh-pages   -&gt; gh-gh-pages/gh-pages
+Added dir 'public'
+$ ls public 
+README.md
+$ git subtree pull --prefix=public gh-gh-pages gh-pages --squash
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&gt; FETCH_HEAD
+Subtree is already at commit b9beee57b9945c67e1f3848d9c06d74d3e806f6d.
+</code></pre>
+
+<p>これで、レポジトリは次のようになります。</p>
+
+<ul>
+<li>bitbucket.orgにはhugoの元データが入る。</li>
+<li>public以下はgithub.comの公開用レポジトリをsubtreeとして持つことになる。<code>git subtree push</code>で更新できる。</li>
+</ul>
+
+<p>あと上のチュートリアルで疑問に思ったこと。<code>canonifyurls: true</code> は独自ドメインの直下に置くことにするならおそらく不要です。username.github.io/project/ 以下に置くなら必要そうですが。</p>
+
+<h2 id="残った項目">残った項目</h2>
+
+<ul>
+<li>もう少し文章を足して見られるようにする。</li>
+<li>画像を足す方法をまじめに見る。
+<a href="https://discuss.gohugo.io/t/image-path/1721">hugo/Image path</a> 画像はどこに置くのか、contentとstatic/imgとで争いが起きてます。とりあえずstatic/imgに設置。Google Photosに置くアイデアは、直リンクの生成が面倒で挫折。</li>
+<li>タグの使い方を理解。</li>
+<li>faviconを足す。</li>
+<li>旧ブログから誘導。</li>
+<li>月別アーカイブやカレンダーを足す。</li>
+<li>Markdownだとサムネイルとクリックして大きい画像みたいな作業が面倒なので何か考える。</li>
+</ul>
+]]></content>
+		</item>
+		
+	</channel>
+</rss>
