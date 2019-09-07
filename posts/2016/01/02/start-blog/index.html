@@ -6,7 +6,108 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta itemprop="name" content="Hugoでblogを作ってみる。">
-<meta itemprop="description" content="新しいことを始めようと何か書いてみます。ブログはありますがfc2で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。 はや">
+<meta itemprop="description" content="新しいことを始めようと何か書いてみます。ブログはありますがfc2で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。
+
+はやりを探してHugoを採用。公式ドキュメントとコミュニティが充実しているので情報を探すのが楽です。Qiita/tags/Hugoとかに日本語の記事もあります。
+
+やったこと
+
+
+インストール
+hugo serverでブラウザで読めるようになるまでチュートリアルをこなす。
+適当な文章(これ)を書く。
+テーマをいろいろ変えてみる。
+
+
+G&#43;リンクを付けてみる。
+fontawesomeを更新してG&#43;のアイコンを正しくする。
+一部のテキストを適当に更新。
+
+bitbucketチェックイン。
+github pagesに突っ込む。
+
+
+インストール
+
+$ brew install hugo
+
+
+Macだったのでこれで終了。LinuxならGolangと go get で終わりだと思います。
+
+チュートリアル
+
+とりあえず公式のドキュメントを読めばよいです。quickstartを追いかけました。あとは適当に読めばよいです。Hosting on GitHub Pagesを読んでさくっとアップロードしてしまっても良いですが、私はそれを少し日和りました。
+
+Install some themesの作業だけ地味に時間がかかります。テーマを全部落としてくるので。
+
+テーマ
+
+テーマを選んでサイトのデザインを変えられますが、これがなかなか苦労しました。迷います。あと不適切なやつもアリマス。
+
+テーマはHugo Theme Showcaseから探します。チュートリアルに従うとテーマが一通りインストールされているので、 --themes の引数を変えて実際に試すこともできます。
+
+実際に触るとテーマがいろいろとバグってたりして楽しいです。自分で文章をいくつか書いて試すことをおすすめします。私が見つけたのは以下の様な例です。
+
+
+プログラム片のスタイルが崩れる。
+config.yamlに指定する変数名がtypoしているので、説明通りに設定しても動かない。
+トップページの概要が崩れる。
+
+
+github pages に突っ込む。
+
+Hosting on GitHub Pagesに概要があります。しかし、あんまりよい手順に見えなかったので理解したうえで別の手順で行いました。
+
+
+上までの手順を行いサイト例を手元に作る。public以下は作らなくて良い。
+bitbuket.orgかどこかにgit pushする。
+github.comに公開用レポジトリをつくる。ここには公開されるデータのみが入ることになる。
+ウェブインターフェスを用いて適当なREADME.mdを置く。
+ウェブインターフェスを用いてgh-pagesブランチを作る。
+
+
+あとは以下のコマンドを実行。
+
+$ git remote add gh-gh-pages git@github.com:gusmachine/tracker.git
+$ git subtree add --prefix=public gh-gh-pages gh-pages --squash
+git fetch gh-gh-pages gh-pages
+warning: no common commits
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&gt; FETCH_HEAD
+ * [new branch]      gh-pages   -&gt; gh-gh-pages/gh-pages
+Added dir &#39;public&#39;
+$ ls public 
+README.md
+$ git subtree pull --prefix=public gh-gh-pages gh-pages --squash
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&gt; FETCH_HEAD
+Subtree is already at commit b9beee57b9945c67e1f3848d9c06d74d3e806f6d.
+
+
+これで、レポジトリは次のようになります。
+
+
+bitbucket.orgにはhugoの元データが入る。
+public以下はgithub.comの公開用レポジトリをsubtreeとして持つことになる。git subtree pushで更新できる。
+
+
+あと上のチュートリアルで疑問に思ったこと。canonifyurls: true は独自ドメインの直下に置くことにするならおそらく不要です。username.github.io/project/ 以下に置くなら必要そうですが。
+
+残った項目
+
+
+もう少し文章を足して見られるようにする。
+画像を足す方法をまじめに見る。
+hugo/Image path 画像はどこに置くのか、contentとstatic/imgとで争いが起きてます。とりあえずstatic/imgに設置。Google Photosに置くアイデアは、直リンクの生成が面倒で挫折。
+タグの使い方を理解。
+faviconを足す。
+旧ブログから誘導。
+月別アーカイブやカレンダーを足す。
+Markdownだとサムネイルとクリックして大きい画像みたいな作業が面倒なので何か考える。
+">
 
 
 <meta itemprop="datePublished" content="2016-01-02T00:01:48&#43;09:00" />
@@ -17,14 +118,216 @@
 
 <meta itemprop="keywords" content="" />
 <meta property="og:title" content="Hugoでblogを作ってみる。" />
-<meta property="og:description" content="新しいことを始めようと何か書いてみます。ブログはありますがfc2で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。 はや" />
+<meta property="og:description" content="新しいことを始めようと何か書いてみます。ブログはありますがfc2で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。
+
+はやりを探してHugoを採用。公式ドキュメントとコミュニティが充実しているので情報を探すのが楽です。Qiita/tags/Hugoとかに日本語の記事もあります。
+
+やったこと
+
+
+インストール
+hugo serverでブラウザで読めるようになるまでチュートリアルをこなす。
+適当な文章(これ)を書く。
+テーマをいろいろ変えてみる。
+
+
+G&#43;リンクを付けてみる。
+fontawesomeを更新してG&#43;のアイコンを正しくする。
+一部のテキストを適当に更新。
+
+bitbucketチェックイン。
+github pagesに突っ込む。
+
+
+インストール
+
+$ brew install hugo
+
+
+Macだったのでこれで終了。LinuxならGolangと go get で終わりだと思います。
+
+チュートリアル
+
+とりあえず公式のドキュメントを読めばよいです。quickstartを追いかけました。あとは適当に読めばよいです。Hosting on GitHub Pagesを読んでさくっとアップロードしてしまっても良いですが、私はそれを少し日和りました。
+
+Install some themesの作業だけ地味に時間がかかります。テーマを全部落としてくるので。
+
+テーマ
+
+テーマを選んでサイトのデザインを変えられますが、これがなかなか苦労しました。迷います。あと不適切なやつもアリマス。
+
+テーマはHugo Theme Showcaseから探します。チュートリアルに従うとテーマが一通りインストールされているので、 --themes の引数を変えて実際に試すこともできます。
+
+実際に触るとテーマがいろいろとバグってたりして楽しいです。自分で文章をいくつか書いて試すことをおすすめします。私が見つけたのは以下の様な例です。
+
+
+プログラム片のスタイルが崩れる。
+config.yamlに指定する変数名がtypoしているので、説明通りに設定しても動かない。
+トップページの概要が崩れる。
+
+
+github pages に突っ込む。
+
+Hosting on GitHub Pagesに概要があります。しかし、あんまりよい手順に見えなかったので理解したうえで別の手順で行いました。
+
+
+上までの手順を行いサイト例を手元に作る。public以下は作らなくて良い。
+bitbuket.orgかどこかにgit pushする。
+github.comに公開用レポジトリをつくる。ここには公開されるデータのみが入ることになる。
+ウェブインターフェスを用いて適当なREADME.mdを置く。
+ウェブインターフェスを用いてgh-pagesブランチを作る。
+
+
+あとは以下のコマンドを実行。
+
+$ git remote add gh-gh-pages git@github.com:gusmachine/tracker.git
+$ git subtree add --prefix=public gh-gh-pages gh-pages --squash
+git fetch gh-gh-pages gh-pages
+warning: no common commits
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&gt; FETCH_HEAD
+ * [new branch]      gh-pages   -&gt; gh-gh-pages/gh-pages
+Added dir &#39;public&#39;
+$ ls public 
+README.md
+$ git subtree pull --prefix=public gh-gh-pages gh-pages --squash
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&gt; FETCH_HEAD
+Subtree is already at commit b9beee57b9945c67e1f3848d9c06d74d3e806f6d.
+
+
+これで、レポジトリは次のようになります。
+
+
+bitbucket.orgにはhugoの元データが入る。
+public以下はgithub.comの公開用レポジトリをsubtreeとして持つことになる。git subtree pushで更新できる。
+
+
+あと上のチュートリアルで疑問に思ったこと。canonifyurls: true は独自ドメインの直下に置くことにするならおそらく不要です。username.github.io/project/ 以下に置くなら必要そうですが。
+
+残った項目
+
+
+もう少し文章を足して見られるようにする。
+画像を足す方法をまじめに見る。
+hugo/Image path 画像はどこに置くのか、contentとstatic/imgとで争いが起きてます。とりあえずstatic/imgに設置。Google Photosに置くアイデアは、直リンクの生成が面倒で挫折。
+タグの使い方を理解。
+faviconを足す。
+旧ブログから誘導。
+月別アーカイブやカレンダーを足す。
+Markdownだとサムネイルとクリックして大きい画像みたいな作業が面倒なので何か考える。
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://track.gusmachine.com/posts/2016/01/02/start-blog/" />
 <meta property="article:published_time" content="2016-01-02T00:01:48+09:00" />
 <meta property="article:modified_time" content="2016-01-02T00:01:48+09:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hugoでblogを作ってみる。"/>
-<meta name="twitter:description" content="新しいことを始めようと何か書いてみます。ブログはありますがfc2で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。 はや"/>
+<meta name="twitter:description" content="新しいことを始めようと何か書いてみます。ブログはありますがfc2で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。
+
+はやりを探してHugoを採用。公式ドキュメントとコミュニティが充実しているので情報を探すのが楽です。Qiita/tags/Hugoとかに日本語の記事もあります。
+
+やったこと
+
+
+インストール
+hugo serverでブラウザで読めるようになるまでチュートリアルをこなす。
+適当な文章(これ)を書く。
+テーマをいろいろ変えてみる。
+
+
+G&#43;リンクを付けてみる。
+fontawesomeを更新してG&#43;のアイコンを正しくする。
+一部のテキストを適当に更新。
+
+bitbucketチェックイン。
+github pagesに突っ込む。
+
+
+インストール
+
+$ brew install hugo
+
+
+Macだったのでこれで終了。LinuxならGolangと go get で終わりだと思います。
+
+チュートリアル
+
+とりあえず公式のドキュメントを読めばよいです。quickstartを追いかけました。あとは適当に読めばよいです。Hosting on GitHub Pagesを読んでさくっとアップロードしてしまっても良いですが、私はそれを少し日和りました。
+
+Install some themesの作業だけ地味に時間がかかります。テーマを全部落としてくるので。
+
+テーマ
+
+テーマを選んでサイトのデザインを変えられますが、これがなかなか苦労しました。迷います。あと不適切なやつもアリマス。
+
+テーマはHugo Theme Showcaseから探します。チュートリアルに従うとテーマが一通りインストールされているので、 --themes の引数を変えて実際に試すこともできます。
+
+実際に触るとテーマがいろいろとバグってたりして楽しいです。自分で文章をいくつか書いて試すことをおすすめします。私が見つけたのは以下の様な例です。
+
+
+プログラム片のスタイルが崩れる。
+config.yamlに指定する変数名がtypoしているので、説明通りに設定しても動かない。
+トップページの概要が崩れる。
+
+
+github pages に突っ込む。
+
+Hosting on GitHub Pagesに概要があります。しかし、あんまりよい手順に見えなかったので理解したうえで別の手順で行いました。
+
+
+上までの手順を行いサイト例を手元に作る。public以下は作らなくて良い。
+bitbuket.orgかどこかにgit pushする。
+github.comに公開用レポジトリをつくる。ここには公開されるデータのみが入ることになる。
+ウェブインターフェスを用いて適当なREADME.mdを置く。
+ウェブインターフェスを用いてgh-pagesブランチを作る。
+
+
+あとは以下のコマンドを実行。
+
+$ git remote add gh-gh-pages git@github.com:gusmachine/tracker.git
+$ git subtree add --prefix=public gh-gh-pages gh-pages --squash
+git fetch gh-gh-pages gh-pages
+warning: no common commits
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&gt; FETCH_HEAD
+ * [new branch]      gh-pages   -&gt; gh-gh-pages/gh-pages
+Added dir &#39;public&#39;
+$ ls public 
+README.md
+$ git subtree pull --prefix=public gh-gh-pages gh-pages --squash
+From github.com:gusmachine/tracker
+ * branch            gh-pages   -&gt; FETCH_HEAD
+Subtree is already at commit b9beee57b9945c67e1f3848d9c06d74d3e806f6d.
+
+
+これで、レポジトリは次のようになります。
+
+
+bitbucket.orgにはhugoの元データが入る。
+public以下はgithub.comの公開用レポジトリをsubtreeとして持つことになる。git subtree pushで更新できる。
+
+
+あと上のチュートリアルで疑問に思ったこと。canonifyurls: true は独自ドメインの直下に置くことにするならおそらく不要です。username.github.io/project/ 以下に置くなら必要そうですが。
+
+残った項目
+
+
+もう少し文章を足して見られるようにする。
+画像を足す方法をまじめに見る。
+hugo/Image path 画像はどこに置くのか、contentとstatic/imgとで争いが起きてます。とりあえずstatic/imgに設置。Google Photosに置くアイデアは、直リンクの生成が面倒で挫折。
+タグの使い方を理解。
+faviconを足す。
+旧ブログから誘導。
+月別アーカイブやカレンダーを足す。
+Markdownだとサムネイルとクリックして大きい画像みたいな作業が面倒なので何か考える。
+"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -77,9 +380,7 @@
 				<h1>Hugoでblogを作ってみる。</h1>
 			</header>
 			<div class="content">
-				
-
-<p>新しいことを始めようと何か書いてみます。<a href="http://gusmachine.blog49.fc2.com/">ブログはありますがfc2</a>で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。</p>
+				<p>新しいことを始めようと何か書いてみます。<a href="http://gusmachine.blog49.fc2.com/">ブログはありますがfc2</a>で、いまさらfc2もないと思うので放棄して新しい物を作ることにしました。</p>
 
 <p>はやりを探して<a href="https://gohugo.io/">Hugo</a>を採用。公式ドキュメントとコミュニティが充実しているので情報を探すのが楽です。<a href="http://qiita.com/tags/Hugo">Qiita/tags/Hugo</a>とかに日本語の記事もあります。</p>
 
@@ -181,7 +482,6 @@ Subtree is already at commit b9beee57b9945c67e1f3848d9c06d74d3e806f6d.
 <li>月別アーカイブやカレンダーを足す。</li>
 <li>Markdownだとサムネイルとクリックして大きい画像みたいな作業が面倒なので何か考える。</li>
 </ul>
-
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">

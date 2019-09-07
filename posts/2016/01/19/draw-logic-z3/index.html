@@ -6,7 +6,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta itemprop="name" content="お絵かきロジックソルバをZ3で書いた">
-<meta itemprop="description" content="SMT SolverであるZ3でお絵かきロジックソルバを書きました。練習です。 コードはこちら。 罠が何箇所かありました。まず、Z3 python bindingで">
+<meta itemprop="description" content="SMT SolverであるZ3でお絵かきロジックソルバを書きました。練習です。
+
+コードはこちら。
+
+罠が何箇所かありました。まず、Z3 python bindingで多次元配列を作る方法がわからなかったので、１次元配列の添字を適当にスキップさせて二次元の図形用変数を作りました。これは自明。
+
+解答を作ったあと、それを表示しようとしてハマりました。結果の配列をprintするとTrueやFalseが正しく出てくるのですが、それをアスキーアートに変えようとすると全てTrueになってしまいます。原因は以下のとおり。
+&gt;&gt;&gt; import z3
+&gt;&gt;&gt; q = z3.Bool(&#39;q&#39;)
+&gt;&gt;&gt; s = z3.Solver()
+&gt;&gt;&gt; s.add(z3.Not(q))
+&gt;&gt;&gt; s.check()
+sat
+&gt;&gt;&gt; m = s.model()
+&gt;&gt;&gt; m
+[q = False]
+&gt;&gt;&gt; m.eval(q)
+False
+&gt;&gt;&gt; not m.eval(q)
+False
+&gt;&gt;&gt; help(m.eval(q))
+Help on instance of BoolRef in module z3:
+
+class BoolRef(ExprRef)
+つまりm.eval(q)の返り値はBoolRefであってBoolではなく、FalseなBoolRefはpythonの真偽値としてはTrueを持つのでした。
+
+ちなみに効率ですが、10x10の人手で解けるパズルを解くのに8秒とかかかります。ちょっとつらい。2^100の探索よりは圧倒的に速いですが、そもそも人手で解くことが可能なパズルならばもっと高速で解けて欲しいところです。不適切なツールだったということでFA。
+
+それからz3で一般に困りそうなところ。そういえば数年前のICFPCでも困りました。
+
+
+シングルプロセス
+遅い時に高速化をどうすればいいかわからない。
+">
 
 
 <meta itemprop="datePublished" content="2016-01-19T00:02:03&#43;09:00" />
@@ -17,14 +50,80 @@
 
 <meta itemprop="keywords" content="" />
 <meta property="og:title" content="お絵かきロジックソルバをZ3で書いた" />
-<meta property="og:description" content="SMT SolverであるZ3でお絵かきロジックソルバを書きました。練習です。 コードはこちら。 罠が何箇所かありました。まず、Z3 python bindingで" />
+<meta property="og:description" content="SMT SolverであるZ3でお絵かきロジックソルバを書きました。練習です。
+
+コードはこちら。
+
+罠が何箇所かありました。まず、Z3 python bindingで多次元配列を作る方法がわからなかったので、１次元配列の添字を適当にスキップさせて二次元の図形用変数を作りました。これは自明。
+
+解答を作ったあと、それを表示しようとしてハマりました。結果の配列をprintするとTrueやFalseが正しく出てくるのですが、それをアスキーアートに変えようとすると全てTrueになってしまいます。原因は以下のとおり。
+&gt;&gt;&gt; import z3
+&gt;&gt;&gt; q = z3.Bool(&#39;q&#39;)
+&gt;&gt;&gt; s = z3.Solver()
+&gt;&gt;&gt; s.add(z3.Not(q))
+&gt;&gt;&gt; s.check()
+sat
+&gt;&gt;&gt; m = s.model()
+&gt;&gt;&gt; m
+[q = False]
+&gt;&gt;&gt; m.eval(q)
+False
+&gt;&gt;&gt; not m.eval(q)
+False
+&gt;&gt;&gt; help(m.eval(q))
+Help on instance of BoolRef in module z3:
+
+class BoolRef(ExprRef)
+つまりm.eval(q)の返り値はBoolRefであってBoolではなく、FalseなBoolRefはpythonの真偽値としてはTrueを持つのでした。
+
+ちなみに効率ですが、10x10の人手で解けるパズルを解くのに8秒とかかかります。ちょっとつらい。2^100の探索よりは圧倒的に速いですが、そもそも人手で解くことが可能なパズルならばもっと高速で解けて欲しいところです。不適切なツールだったということでFA。
+
+それからz3で一般に困りそうなところ。そういえば数年前のICFPCでも困りました。
+
+
+シングルプロセス
+遅い時に高速化をどうすればいいかわからない。
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://track.gusmachine.com/posts/2016/01/19/draw-logic-z3/" />
 <meta property="article:published_time" content="2016-01-19T00:02:03+09:00" />
 <meta property="article:modified_time" content="2016-01-19T00:02:03+09:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="お絵かきロジックソルバをZ3で書いた"/>
-<meta name="twitter:description" content="SMT SolverであるZ3でお絵かきロジックソルバを書きました。練習です。 コードはこちら。 罠が何箇所かありました。まず、Z3 python bindingで"/>
+<meta name="twitter:description" content="SMT SolverであるZ3でお絵かきロジックソルバを書きました。練習です。
+
+コードはこちら。
+
+罠が何箇所かありました。まず、Z3 python bindingで多次元配列を作る方法がわからなかったので、１次元配列の添字を適当にスキップさせて二次元の図形用変数を作りました。これは自明。
+
+解答を作ったあと、それを表示しようとしてハマりました。結果の配列をprintするとTrueやFalseが正しく出てくるのですが、それをアスキーアートに変えようとすると全てTrueになってしまいます。原因は以下のとおり。
+&gt;&gt;&gt; import z3
+&gt;&gt;&gt; q = z3.Bool(&#39;q&#39;)
+&gt;&gt;&gt; s = z3.Solver()
+&gt;&gt;&gt; s.add(z3.Not(q))
+&gt;&gt;&gt; s.check()
+sat
+&gt;&gt;&gt; m = s.model()
+&gt;&gt;&gt; m
+[q = False]
+&gt;&gt;&gt; m.eval(q)
+False
+&gt;&gt;&gt; not m.eval(q)
+False
+&gt;&gt;&gt; help(m.eval(q))
+Help on instance of BoolRef in module z3:
+
+class BoolRef(ExprRef)
+つまりm.eval(q)の返り値はBoolRefであってBoolではなく、FalseなBoolRefはpythonの真偽値としてはTrueを持つのでした。
+
+ちなみに効率ですが、10x10の人手で解けるパズルを解くのに8秒とかかかります。ちょっとつらい。2^100の探索よりは圧倒的に速いですが、そもそも人手で解くことが可能なパズルならばもっと高速で解けて欲しいところです。不適切なツールだったということでFA。
+
+それからz3で一般に困りそうなところ。そういえば数年前のICFPCでも困りました。
+
+
+シングルプロセス
+遅い時に高速化をどうすればいいかわからない。
+"/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -111,7 +210,6 @@
 <li>シングルプロセス</li>
 <li>遅い時に高速化をどうすればいいかわからない。</li>
 </ul>
-
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
