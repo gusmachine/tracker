@@ -6,8 +6,80 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>ja-jp</language>
 		<copyright>2015 ~ gusmachine</copyright>
-		<lastBuildDate>Thu, 28 Jan 2016 00:02:13 +0900</lastBuildDate>
+		<lastBuildDate>Sat, 07 Sep 2019 22:54:04 +0900</lastBuildDate>
 		<atom:link href="https://track.gusmachine.com/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>ブログを再構築</title>
+			<link>https://track.gusmachine.com/posts/2019/09/07/2019-09-restart/</link>
+			<pubDate>Sat, 07 Sep 2019 22:54:04 +0900</pubDate>
+			
+			<guid>https://track.gusmachine.com/posts/2019/09/07/2019-09-restart/</guid>
+			<description>&lt;p&gt;ブログを再構築しました。長文を書くスペースが欲しかったので。&lt;/p&gt;
+
+&lt;p&gt;以前にうっかり &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; を選んでしまったために細かいメンテナンスが積み重なっていて苦労していました。ver 1.0 以降の正式版がリリースされていないソフトなので仕方ないですが。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;$ brew upgrade&lt;/code&gt; したらバージョンが v. 0.15 から v. 0.52 と3倍に。&lt;/li&gt;
+&lt;li&gt;テーマの書き方が変わっていて、 hugo server が動きませんでした。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://themes.gohugo.io/hugo-multi-bootswatch/&#34;&gt;使っていたテーマ&lt;/a&gt; はすでにメンテ終了。新しいテーマを探しました。
+あるいは自前でテーマを書いてもいいですが、そんなことができるならバージョン更新で
+苦労はしません。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;とりあえず適当な基準でテンプレート &lt;a href=&#34;https://github.com/Track3/hermit&#34;&gt;hermit&lt;/a&gt; を導入しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ページロードがある程度軽い。&lt;/li&gt;
+&lt;li&gt;記事てっぺんに謎の特大画像を出さない。&lt;/li&gt;
+&lt;li&gt;携帯からある程度読める。&lt;/li&gt;
+&lt;li&gt;開発が今の所継続されている。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;昔はソースコードの可読性も気にしていましたが今はチェックしませんでした。長いコードは gist にでも輸出します。&lt;/p&gt;
+
+&lt;p&gt;あとだいたい次の作業をした記憶があります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RSS がちゃんと出るか確認。結局全ての記事に more タグを仕込んでフルテキスト出すようにしました。&lt;/li&gt;
+&lt;li&gt;記事を content/post から content/posts に移動。hermit は posts　に記事を書かないとRSSリンクとかが壊れるので。&lt;a href=&#34;https://github.com/Track3/hermit/blob/master/README.md#manage-content&#34;&gt;公式にも書かれています。&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;about記事とかを埋めました。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;視野に入っていてやってないのはアクセス解析。 GDPR 対策をつけるのがかなりだるくてつけていません。&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>ブログを再構築しました。長文を書くスペースが欲しかったので。</p>
+
+<p>以前にうっかり <a href="https://gohugo.io/">Hugo</a> を選んでしまったために細かいメンテナンスが積み重なっていて苦労していました。ver 1.0 以降の正式版がリリースされていないソフトなので仕方ないですが。</p>
+
+<ol>
+<li><code>$ brew upgrade</code> したらバージョンが v. 0.15 から v. 0.52 と3倍に。</li>
+<li>テーマの書き方が変わっていて、 hugo server が動きませんでした。</li>
+<li><a href="https://themes.gohugo.io/hugo-multi-bootswatch/">使っていたテーマ</a> はすでにメンテ終了。新しいテーマを探しました。
+あるいは自前でテーマを書いてもいいですが、そんなことができるならバージョン更新で
+苦労はしません。</li>
+</ol>
+
+<p>とりあえず適当な基準でテンプレート <a href="https://github.com/Track3/hermit">hermit</a> を導入しました。</p>
+
+<ul>
+<li>ページロードがある程度軽い。</li>
+<li>記事てっぺんに謎の特大画像を出さない。</li>
+<li>携帯からある程度読める。</li>
+<li>開発が今の所継続されている。</li>
+</ul>
+
+<p>昔はソースコードの可読性も気にしていましたが今はチェックしませんでした。長いコードは gist にでも輸出します。</p>
+
+<p>あとだいたい次の作業をした記憶があります。</p>
+
+<ul>
+<li>RSS がちゃんと出るか確認。結局全ての記事に more タグを仕込んでフルテキスト出すようにしました。</li>
+<li>記事を content/post から content/posts に移動。hermit は posts　に記事を書かないとRSSリンクとかが壊れるので。<a href="https://github.com/Track3/hermit/blob/master/README.md#manage-content">公式にも書かれています。</a></li>
+<li>about記事とかを埋めました。</li>
+</ul>
+
+<p>視野に入っていてやってないのはアクセス解析。 GDPR 対策をつけるのがかなりだるくてつけていません。</p>]]></content>
+		</item>
 		
 		<item>
 			<title>携帯版テーマの謎仕様</title>

@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://track.gusmachine.com/posts/</loc>
+    <lastmod>2019-09-07T22:54:04+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://track.gusmachine.com/posts/2019/09/07/2019-09-restart/</loc>
+    <lastmod>2019-09-07T22:54:04+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://track.gusmachine.com/</loc>
+    <lastmod>2019-09-07T22:54:04+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://track.gusmachine.com/resume/</loc>
     <lastmod>2019-04-17T00:29:02+09:00</lastmod>
   </url>
@@ -13,18 +28,8 @@
   </url>
   
   <url>
-    <loc>https://track.gusmachine.com/</loc>
-    <lastmod>2019-04-17T00:29:02+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://track.gusmachine.com/resume/en/</loc>
     <lastmod>2019-04-17T00:09:41+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://track.gusmachine.com/posts/</loc>
-    <lastmod>2016-01-28T00:02:13+09:00</lastmod>
   </url>
   
   <url>
